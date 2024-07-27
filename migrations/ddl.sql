@@ -14,6 +14,7 @@ CREATE TABLE Staff
 (
     StaffID   INT PRIMARY KEY AUTO_INCREMENT,
     StaffName VARCHAR(255),
+    Email     VARCHAR(255),
     RoleID    INT NOT NULL,
     FOREIGN KEY (RoleID) REFERENCES Roles (RoleID)
 );
@@ -26,7 +27,7 @@ CREATE TABLE Roles
 
 CREATE TABLE Sales
 (
-    SaleID     INT PRIMARY KEY AUTO_INCREMENT,
+    SaleID      INT PRIMARY KEY AUTO_INCREMENT,
     Date        DATE,
     ProductID   INT NOT NULL,
     Quantity    INT,

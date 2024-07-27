@@ -10,10 +10,10 @@ INSERT INTO Roles (RoleName)
 VALUES ('Admin'),
        ('Kasir');
 
-INSERT INTO Staff (StaffName, RoleID)
-VALUES ('John', 1),
-       ('Doe', 2),
-       ('Steve', 2);
+INSERT INTO Staff (StaffName, Email, RoleID)
+VALUES ('John', 'john@example.com', 1),
+       ('Doe', 'doe@example.com', 2),
+       ('Steve', 'steve@example.com', 2);
 
 INSERT INTO Sales (Date, ProductID, Quantity, TotalAmount, StaffID)
 VALUES ('2024-07-01', 1, 5, 100000, 2),
