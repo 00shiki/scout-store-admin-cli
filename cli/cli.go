@@ -45,6 +45,7 @@ loop:
 		case 5:
 			// TODO: product purchase
 		case 6:
+			fmt.Println("\nTerima Kasih sudah menggunakan aplikasi Toko Aksesoris Pramuka. Sampai Jumpa!")
 			break loop
 		default:
 			fmt.Println("pilihan tidak tersedia mohon untuk pilih (1/2/3/4/5/6)")
