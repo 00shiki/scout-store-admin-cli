@@ -44,7 +44,8 @@ loop:
 		case 4:
 			c.Handler.SalesReport()
 		case 5:
-			// TODO: product purchase
+			c.Handler.ShowProducts()
+			c.Handler.PurchaseProduct()
 		case 6:
 			fmt.Println("\nTerima Kasih sudah menggunakan aplikasi Toko Aksesoris Pramuka. Sampai Jumpa!")
 			break loop

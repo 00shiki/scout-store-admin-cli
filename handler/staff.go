@@ -47,3 +47,14 @@ func (h *Handler) RegisterStaff() {
 	fmt.Println("Tekan tombol ENTER untuk melanjutkan ke menu...")
 	fmt.Scanf("\n")
 }
+
+func (h *Handler) ShowStaff() {
+	staffs, err := h.StaffRepo.FetchStaffs()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	for _, staff := range staffs {
+		fmt.Printf("%d. %s %s\n", staff.ID, staff.Name, staff.Email)
+	}
+}
