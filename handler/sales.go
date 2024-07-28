@@ -98,6 +98,11 @@ func (h *Handler) PurchaseProduct() {
 		log.Fatal(err)
 		return
 	}
+	err = h.ProductRepo.UpdateStockByID(productID, product.Stock-quantity)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	fmt.Println("Pembelian berhasil dibuat")
 	fmt.Println("Tekan tombol ENTER untuk melanjutkan ke menu...")
 	fmt.Scanf("\n")
