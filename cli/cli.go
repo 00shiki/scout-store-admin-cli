@@ -42,7 +42,7 @@ loop:
 		case 3:
 			c.Handler.RegisterStaff()
 		case 4:
-			// TODO: sales report
+			c.Handler.SalesReport()
 		case 5:
 			// TODO: product purchase
 		case 6:
