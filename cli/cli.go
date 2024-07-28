@@ -40,7 +40,7 @@ loop:
 			c.Handler.ShowProducts()
 			c.Handler.RestockProduct()
 		case 3:
-			// TODO: register staff
+			c.Handler.RegisterStaff()
 		case 4:
 			// TODO: sales report
 		case 5:
