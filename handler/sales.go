@@ -17,16 +17,20 @@ func (h *Handler) SalesReport() {
 	}
 	if startDate == "" || endDate == "" {
 		log.Fatalf("error scanning date: startDate or endDate must not empty")
+		return
 	}
 	if err := utils.ValidateDate(startDate); err != nil {
 		log.Fatalf("error validating start date: %v", err)
+		return
 	}
 	if err := utils.ValidateDate(endDate); err != nil {
 		log.Fatalf("error validating end date: %v", err)
+		return
 	}
 	sales, err := h.SalesRepo.FetchSales(startDate, endDate)
 	if err != nil {
 		log.Fatalf("error fetching sales: %v", err)
+		return
 	}
 	utils.SalesTable(sales)
 	fmt.Println("\nTekan tombol ENTER untuk melanjutkan ke menu...")
@@ -77,6 +81,11 @@ func (h *Handler) PurchaseProduct() {
 		Staff:       staff,
 	}
 	err = h.SalesRepo.AddSale(sale)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	err = h.ProductRepo.UpdateStockByID(productID, product.Stock-quantity)
 	if err != nil {
 		log.Fatal(err)
 		return

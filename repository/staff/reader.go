@@ -30,7 +30,7 @@ func (r *Repository) FetchStaffs() ([]entity.Staff, error) {
 
 func (r *Repository) FetchStaffByID(staffID int) (entity.Staff, error) {
 	query := `
-			SELECT s.StaffName, s.Email, s.RoleID, r.RoleName
+			SELECT s.StaffID, s.StaffName, s.Email, s.RoleID, r.RoleName
 			FROM Staff s
 					 JOIN Roles r
 						  ON s.RoleID = r.RoleID
@@ -44,7 +44,7 @@ func (r *Repository) FetchStaffByID(staffID int) (entity.Staff, error) {
 	for !rows.Next() {
 		return entity.Staff{}, fmt.Errorf("staff not found")
 	}
-	err = rows.Scan(&staff.Name, &staff.Email, &staff.Role.ID, &staff.Role.Name)
+	err = rows.Scan(&staff.ID, &staff.Name, &staff.Email, &staff.Role.ID, &staff.Role.Name)
 	if err != nil {
 		return entity.Staff{}, fmt.Errorf("error scanning staff: %v", err)
 	}

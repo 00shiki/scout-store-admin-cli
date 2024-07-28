@@ -25,7 +25,7 @@ func (r *Repository) FetchProducts() ([]entity.Product, error) {
 }
 
 func (r *Repository) FetchProductByID(id int) (entity.Product, error) {
-	query := `SELECT ProductName, Price, Stock FROM Products WHERE ProductID = ?`
+	query := `SELECT ProductID, ProductName, Price, Stock FROM Products WHERE ProductID = ?`
 	var p entity.Product
 	rows, err := r.DB.Query(query, id)
 	if err != nil {
@@ -35,7 +35,7 @@ func (r *Repository) FetchProductByID(id int) (entity.Product, error) {
 	if !rows.Next() {
 		return entity.Product{}, fmt.Errorf("product not found")
 	}
-	if err = rows.Scan(&p.Name, &p.Price, &p.Stock); err != nil {
+	if err = rows.Scan(&p.ID, &p.Name, &p.Price, &p.Stock); err != nil {
 		return entity.Product{}, fmt.Errorf("error scanning product: %v", err)
 	}
 	return p, nil
