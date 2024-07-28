@@ -54,3 +54,34 @@ func (h *Handler) ShowProducts() {
 		fmt.Printf("%d. %s Rp %s (%d)\n", product.ID, product.Name, utils.PriceFormat(product.Price), product.Stock)
 	}
 }
+
+func (h *Handler) RestockProduct() {
+	fmt.Print("Masukkan id produk yang ingin di-restock: ")
+	var productID int
+	_, err := fmt.Scan(&productID)
+	if err != nil {
+		log.Fatal("error input product id:", err)
+		return
+	}
+	product, err := h.ProductRepo.FetchProductByID(productID)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Print("Masukkan stok yang ingin ditambahkan: ")
+	var newStock int
+	_, err = fmt.Scan(&newStock)
+	if err != nil {
+		log.Fatal("error input new stock:", err)
+		return
+	}
+	err = h.ProductRepo.UpdateStockByID(productID, product.Stock+newStock)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	fmt.Println("Stok Produk berhasil diperbaharui!")
+	fmt.Println("Produk berhasil ditambahkan")
+	fmt.Println("Tekan tombol ENTER untuk melanjutkan ke menu...")
+	fmt.Scanf("\n")
+}

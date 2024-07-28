@@ -13,3 +13,12 @@ func (r *Repository) AddProduct(product entity.Product) error {
 	}
 	return nil
 }
+
+func (r *Repository) UpdateStockByID(productID, newStock int) error {
+	query := `UPDATE Products SET Stock = ? WHERE ProductID = ?`
+	_, err := r.DB.Exec(query, newStock, productID)
+	if err != nil {
+		return fmt.Errorf("error updating product: %v", err)
+	}
+	return nil
+}

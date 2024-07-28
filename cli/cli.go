@@ -38,6 +38,7 @@ loop:
 			c.Handler.AddProduct()
 		case 2:
 			c.Handler.ShowProducts()
+			c.Handler.RestockProduct()
 		case 3:
 			// TODO: register staff
 		case 4:
