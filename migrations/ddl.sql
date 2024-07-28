@@ -10,6 +10,12 @@ CREATE TABLE Products
     Stock       INT
 );
 
+CREATE TABLE Roles
+(
+    RoleID   INT PRIMARY KEY AUTO_INCREMENT,
+    RoleName VARCHAR(255)
+);
+
 CREATE TABLE Staff
 (
     StaffID   INT PRIMARY KEY AUTO_INCREMENT,
@@ -17,12 +23,6 @@ CREATE TABLE Staff
     Email     VARCHAR(255),
     RoleID    INT NOT NULL,
     FOREIGN KEY (RoleID) REFERENCES Roles (RoleID)
-);
-
-CREATE TABLE Roles
-(
-    RoleID   INT PRIMARY KEY AUTO_INCREMENT,
-    RoleName VARCHAR(255)
 );
 
 CREATE TABLE Sales

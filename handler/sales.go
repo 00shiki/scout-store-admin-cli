@@ -8,25 +8,38 @@ import (
 )
 
 func (h *Handler) SalesReport() {
-	fmt.Print("Masukkan periode penjualan (YYYY-MM-DD): ")
-	var startDate, endDate string
-	_, err := fmt.Scan(&startDate, &endDate)
+	fmt.Print("Masukkan tanggal mulai penjualan (YYYY-MM-DD): ")
+	var startDate string
+	_, err := fmt.Scan(&startDate)
 	if err != nil {
-		log.Fatalf("error scanning date: %v", err)
+		log.Fatalf("error scanning start date: %v", err)
 		return
 	}
-	if startDate == "" || endDate == "" {
-		log.Fatalf("error scanning date: startDate or endDate must not empty")
+	if startDate == "" {
+		log.Fatalf("error scanning start date: startDate must not be empty")
 		return
 	}
 	if err := utils.ValidateDate(startDate); err != nil {
 		log.Fatalf("error validating start date: %v", err)
 		return
 	}
+
+	fmt.Print("Masukkan tanggal akhir penjualan (YYYY-MM-DD): ")
+	var endDate string
+	_, err = fmt.Scan(&endDate)
+	if err != nil {
+		log.Fatalf("error scanning end date: %v", err)
+		return
+	}
+	if endDate == "" {
+		log.Fatalf("error scanning end date: endDate must not be empty")
+		return
+	}
 	if err := utils.ValidateDate(endDate); err != nil {
 		log.Fatalf("error validating end date: %v", err)
 		return
 	}
+
 	sales, err := h.SalesRepo.FetchSales(startDate, endDate)
 	if err != nil {
 		log.Fatalf("error fetching sales: %v", err)
