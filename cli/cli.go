@@ -2,7 +2,6 @@ package cli
 
 import (
 	"fmt"
-	"log"
 	"scout-store-admin-cli/handler"
 )
 
@@ -18,16 +17,17 @@ func New(handler *handler.Handler) *Cli {
 
 func (c *Cli) Init() {
 	fmt.Println("Selamat Datang di Toko Aksesoris Pramuka!\n")
-
+loop:
 	for {
 		fmt.Println("1. Tambahkan Produk")
 		fmt.Println("2. Restock Produk")
 		fmt.Println("3. Tambahkan Staff")
 		fmt.Println("4. Laporan Penjualan")
 		fmt.Println("5. Melakukan Pembelian Produk")
+		fmt.Println("6. Keluar")
 		fmt.Println()
 
-		log.Print("Masukkan pilihan fitur (1/2/3/4/5): ")
+		fmt.Print("Masukkan pilihan fitur (1/2/3/4/5/6): ")
 		var option int
 		_, err := fmt.Scanf("%d", &option)
 		if err != nil {
@@ -44,8 +44,10 @@ func (c *Cli) Init() {
 			// TODO: sales report
 		case 5:
 			// TODO: product purchase
+		case 6:
+			break loop
 		default:
-			fmt.Println("pilihan tidak tersedia mohon untuk pilih (1/2/3/4/5)")
+			fmt.Println("pilihan tidak tersedia mohon untuk pilih (1/2/3/4/5/6)")
 		}
 	}
 }
