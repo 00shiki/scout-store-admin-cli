@@ -1,10 +1,8 @@
 package handler
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
 	"scout-store-admin-cli/entity"
 	"scout-store-admin-cli/utils"
 )
@@ -14,11 +12,13 @@ func (h *Handler) AddProduct() {
 	var price float64
 	var stock int
 	fmt.Print("Masukkan nama produk: ")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	name = scanner.Text()
+	_, err := fmt.Scanln(&name)
+	if err != nil {
+		log.Fatalf("error scanning name: %v", err)
+		return
+	}
 	fmt.Print("Masukkan harga produk: ")
-	_, err := fmt.Scan(&price)
+	_, err = fmt.Scan(&price)
 	if err != nil {
 		log.Fatalf("error scanning price: %v", err)
 		return

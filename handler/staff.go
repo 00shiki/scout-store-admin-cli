@@ -1,10 +1,8 @@
 package handler
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
 	"scout-store-admin-cli/entity"
 )
 
@@ -13,11 +11,13 @@ func (h *Handler) RegisterStaff() {
 	var email string
 	var roleID int
 	fmt.Print("Masukkan nama staff: ")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	name = scanner.Text()
+	_, err := fmt.Scanln(&name)
+	if err != nil {
+		log.Fatalf("error scanning name: %v", err)
+		return
+	}
 	fmt.Print("Masukkan email staff: ")
-	_, err := fmt.Scan(&email)
+	_, err = fmt.Scan(&email)
 	if err != nil {
 		log.Fatalf("error scanning email: %v", err)
 		return
